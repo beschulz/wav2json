@@ -34,10 +34,14 @@ int main(int argc, char* argv[])
   ofs << "{" << std::endl;
 
   /*
+    Precision vs. file size benchmark:
+
+    precision 6:
     -rw-r--r--   1 beschulz  staff    606 Aug 18 19:36 test1.json
     -rw-r--r--   1 beschulz  staff  43431 Aug 18 19:36 test2.json
     -rw-r--r--   1 beschulz  staff  39104 Aug 18 19:36 test3.json
 
+    presision 2:
     -rw-r--r--   1 beschulz  staff    384 Aug 18 19:55 test1.json
     -rw-r--r--   1 beschulz  staff  15291 Aug 18 19:55 test2.json
     -rw-r--r--   1 beschulz  staff  19499 Aug 18 19:55 test3.json    

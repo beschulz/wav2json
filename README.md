@@ -13,7 +13,6 @@ Note: the file examples/waveform.js is from http://waveformjs.org/
 
 This application is based on [wav2png](https://github.com/beschulz/wav2png/) but does generate json data instead of pngs.
 
-
 #Examples
 
 	wav2json song.wav --channels left right -o song.json
@@ -34,6 +33,8 @@ Since the input file is opened multiple times, I'd recommend to write it to a te
 	sox ../song.mp3 -c 2 -t wav tmp.wav
 	wav2json tmp.wav --channels left right mid side min max -o song.json
 	rm tmp.wav
+
+Also note, that you can dramatically reduce the file size, by reducing the precission of the output. In my tests, even a precission of 1 looked good.
 
 # Installation
 
