@@ -110,7 +110,7 @@
       $('#examples').append($('<div class="waveform" id="' + name + '_max">maximum of the channels</div>'));
       $('#examples').append($('<div class="seperator"></div>'));
 
-      $.getJSON('https://raw.github.com/beschulz/wav2json/master/examples/' + name + '.json', function(samples)
+      $.getJSON(name + '.json', function(samples)
       {
         render_waveform(name + '_left' , samples.left);
         render_waveform(name + '_right', samples.right);
