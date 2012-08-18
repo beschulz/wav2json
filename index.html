@@ -138,6 +138,8 @@ wav2json tmp.wav --channels left right mid side min max -o song.json
 rm tmp.wav
 </code></pre>
 
+<p>Also note, that you can dramatically reduce the file size, by reducing the precission of the output. In my tests, even a precission of 1 looked good.</p>
+
 <h1>Installation</h1>
 
 <h2>On Linux (Ubuntu, Debian)</h2>
@@ -172,7 +174,7 @@ make all
 <li>in the shell: cd build &amp;&amp; make all</li>
 </ul><h1>Usage</h1>
 
-<pre><code>wav2json version 0.1
+<pre><code>wav2json version 0.2
 written by Benjamin Schulz (beschulz[the a with the circle]betabugs.de)
 
 usage: wav2json [options] input_file_name
@@ -188,6 +190,10 @@ Configuration:
   -s [ --samples ] arg (=800)           number of samples to generate
   --channels arg (=left right )         channels to compute: left, right, mid, 
                                         side, min, max
+  -p [ --precision ] arg (=6)           precision of the floats, that are 
+                                        generated. [1..6], reduce for smaller 
+                                        sized files. Usually 2 should be 
+                                        sufficient!
   -o [ --output ] arg                   name of output file, defaults to &lt;name 
                                         of inputfile&gt;.json
   -c [ --config-file ] arg (=wav2json.cfg)
@@ -200,6 +206,8 @@ Configuration:
                                         will be visible in the waveform. 
                                         Usefull, if you now, that your signal 
                                         peaks at a certain level.
+  -n [ --no-header ]                    Do not include the version info banner 
+                                        in the output
 </code></pre>
 
 <p>One thing, thats noteworthy is, that you can generate output for multiple cahannels:</p>
