@@ -57,34 +57,34 @@ Since the input file is opened multiple times, I'd recommend to write it to a te
 
 #Usage
 
-wav2json version 0.1
-written by Benjamin Schulz (beschulz[the a with the circle]betabugs.de)
+	wav2json version 0.1
+	written by Benjamin Schulz (beschulz[the a with the circle]betabugs.de)
 
-usage: wav2json [options] input_file_name
-example: wav2json my_file.wav
+	usage: wav2json [options] input_file_name
+	example: wav2json my_file.wav
 
-Allowed options:
+	Allowed options:
 
-Generic options:
-  -v [ --version ]      print version string
-  --help                produce help message
+	Generic options:
+	  -v [ --version ]      print version string
+	  --help                produce help message
 
-Configuration:
-  -s [ --samples ] arg (=800)           number of samples to generate
-  --channels arg (=left right )         channels to compute: left, right, mid, 
-                                        side, min, max
-  -o [ --output ] arg                   name of output file, defaults to <name 
-                                        of inputfile>.json
-  -c [ --config-file ] arg (=wav2json.cfg)
-                                        config file to use
-  -d [ --db-scale ]                     use logarithmic (e.g. decibel) scale 
-                                        instead of linear scale
-  --db-min arg (=-48)                   minimum value of the signal in dB, that
-                                        will be visible in the waveform
-  --db-max arg (=0)                     maximum value of the signal in dB, that
-                                        will be visible in the waveform. 
-                                        Usefull, if you now, that your signal 
-                                        peaks at a certain level.
+	Configuration:
+	  -s [ --samples ] arg (=800)           number of samples to generate
+	  --channels arg (=left right )         channels to compute: left, right, mid, 
+	                                        side, min, max
+	  -o [ --output ] arg                   name of output file, defaults to <name 
+	                                        of inputfile>.json
+	  -c [ --config-file ] arg (=wav2json.cfg)
+	                                        config file to use
+	  -d [ --db-scale ]                     use logarithmic (e.g. decibel) scale 
+	                                        instead of linear scale
+	  --db-min arg (=-48)                   minimum value of the signal in dB, that
+	                                        will be visible in the waveform
+	  --db-max arg (=0)                     maximum value of the signal in dB, that
+	                                        will be visible in the waveform. 
+	                                        Usefull, if you now, that your signal 
+	                                        peaks at a certain level.
 
 One thing, thats noteworthy is, that you can generate output for multiple cahannels:
 
