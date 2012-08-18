@@ -82,7 +82,7 @@ T compute_sample(const std::vector<T>& block, int i, int n_channels, Options::Ch
 void compute_waveform(
   const SndfileHandle& wav,
   std::ostream& output_stream,
-  int samples,
+  size_t samples,
   Options::Channel channel,
   bool use_db_scale,
   float db_min,
@@ -99,7 +99,7 @@ void compute_waveform(
   // you can change it to float or short, short was much faster for me.
   typedef short sample_type;
 
-  samples = std::min(wav.frames(), (long long)samples);
+  samples = std::min(wav.frames(), (sf_count_t)samples);
 
   int frames_per_pixel  = std::max<int>(1, wav.frames() / samples);
   int samples_per_pixel = wav.channels() * frames_per_pixel;

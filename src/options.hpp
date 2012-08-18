@@ -4,6 +4,7 @@
 #include <boost/program_options.hpp>
 #include <string>
 #include "./version.hpp"
+#include <iostream>
 
 struct Options
 {
@@ -23,7 +24,7 @@ struct Options
 
     	po::options_description config("Configuration");
 		config.add_options()
-    		("samples,s", po::value<unsigned>(&samples)->default_value(800), 
+    		("samples,s", po::value<size_t>(&samples)->default_value(800), 
           		"number of samples to generate")
     		("channels", po::value<Channels>(&channels)->default_value(default_chanels)->multitoken(),
           		"channels to compute: left, right, mid, side, min, max")
@@ -127,7 +128,7 @@ struct Options
 		}
 	}
 
-	unsigned samples;
+	size_t samples;
 
 	enum Channel
 	{
