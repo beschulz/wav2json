@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Wav2json : Generate waveformjs.org compatible json data out of wav files." />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Wav2json</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/beschulz/wav2json">View on GitHub</a>
+
+          <h1 id="project_title">Wav2json</h1>
+          <h2 id="project_tagline">Generate waveformjs.org compatible json data out of wav files.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/beschulz/wav2json/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/beschulz/wav2json/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>wav2json</h1>
+
+<p>Generate waveformjs.org compatible json data out of wav files.</p>
+
+<p>Author: Benjamin Schulz</p>
+
+<p>email: beschulz[the a with the circle]betabugs.de  </p>
+
+<p>License: GPL</p>
+
+<p>Note: the file examples/waveform.js is from <a href="http://waveformjs.org/">http://waveformjs.org/</a></p>
+
+<p>This application is based on <a href="https://github.com/beschulz/wav2png/">wav2png</a> but does generate json data instead of pngs.</p>
+
+<h1>Examples</h1>
+
+<pre><code>wav2json song.wav --channels left right -o song.json
+</code></pre>
+
+<p>might produce output like</p>
+
+<pre><code>{
+    "left":[0,0.499969,0.865997,0.999969,0.865997,0.499969,0,0.5,0.866028,0,0.866028,0.5],
+    "right":[0,0.499969,0.865997,0.999969,0.865997,0.499969,0,0.5,0.866028,0,0.866028,0.5],
+}
+</code></pre>
+
+<h1>Performance</h1>
+
+<p>Similar to wav2png (e.g. very good). But it might be a little slower, when generating output for multiple channels.
+Since the input file is opened multiple times, I'd recommend to write it to a temporary file first, so you can take advantage of the operating systems file cache:</p>
+
+<pre><code>sox ../song.mp3 -c 2 -t wav tmp.wav
+wav2json tmp.wav --channels left right mid side min max -o song.json
+rm tmp.wav
+</code></pre>
+
+<h1>Installation</h1>
+
+<h2>On Linux (Ubuntu, Debian)</h2>
+
+<h3>install dependencies</h3>
+
+<pre><code>apt-get install make g++ libsndfile1-dev libboost-program-options-dev
+</code></pre>
+
+<h3>Build</h3>
+
+<pre><code>cd build
+make all
+</code></pre>
+
+<h2>On Max OS</h2>
+
+<h3>install dependencies</h3>
+
+<ul>
+<li>Get the Xcode command line tools
+
+<ul>
+<li>Starting with Xcode 4.3, Apple does not install command line tools by default anymore, so after Xcode installation, go to Preferences &gt; Downloads &gt; Components &gt; Command Line Tools and click Install. You can also directly <a href="https://developer.apple.com/downloads">download Command Line Tools</a> for Xcode without getting Xcode.</li>
+</ul>
+</li>
+<li><a href="https://github.com/mxcl/homebrew/wiki/installation">Install homebrew</a></li>
+<li>install libsndfile: in the shell: brew install libsndfile</li>
+</ul><h3>Build</h3>
+
+<ul>
+<li>in the shell: cd build &amp;&amp; make all</li>
+</ul><h1>Usage</h1>
+
+<pre><code>wav2json version 0.1
+written by Benjamin Schulz (beschulz[the a with the circle]betabugs.de)
+
+usage: wav2json [options] input_file_name
+example: wav2json my_file.wav
+
+Allowed options:
+
+Generic options:
+  -v [ --version ]      print version string
+  --help                produce help message
+
+Configuration:
+  -s [ --samples ] arg (=800)           number of samples to generate
+  --channels arg (=left right )         channels to compute: left, right, mid, 
+                                        side, min, max
+  -o [ --output ] arg                   name of output file, defaults to &lt;name 
+                                        of inputfile&gt;.json
+  -c [ --config-file ] arg (=wav2json.cfg)
+                                        config file to use
+  -d [ --db-scale ]                     use logarithmic (e.g. decibel) scale 
+                                        instead of linear scale
+  --db-min arg (=-48)                   minimum value of the signal in dB, that
+                                        will be visible in the waveform
+  --db-max arg (=0)                     maximum value of the signal in dB, that
+                                        will be visible in the waveform. 
+                                        Usefull, if you now, that your signal 
+                                        peaks at a certain level.
+</code></pre>
+
+<p>One thing, thats noteworthy is, that you can generate output for multiple cahannels:</p>
+
+<ul>
+<li>left is the left channel of the audio file.</li>
+<li>right is the right channel of the audio file</li>
+<li>mid is the mid channel of the audio file computed per sample as: mid = (left + right) / 2</li>
+<li>side is the side channel of the audio file computed per sample as: side = (left + right) / 2</li>
+<li>max is the maximum of the channels of the audio file computed per sample as: max = max(left, right)</li>
+<li>min is the minimum of the channels of the audio file computed per sample as: min = min(left, right)</li>
+</ul><p>Obviously outputting the right, mid, side, min, max channels does only make sense on stereo input. When the input is mono,
+the applications falls back to outputing the left channel and prints a warning to stderr.</p>
+
+<p>When there are more than two channels present, the output might be a little non-sensical, depending on what information is stored in the first and second channel.</p>
+
+<h1>Donations</h1>
+
+<p>If you find wav2png incredibly usefull nd use it a lot, feel free to make a small <a href="http://goo.gl/Ey2Bp">donation via paypal</a>.
+While it is highly appreciated, it is absolutely not necessary to us the software.</p>
+
+<p>If you find any issues, feel free to contact me.
+and most important: enjoy and have fun :D</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Wav2json maintained by <a href="https://github.com/beschulz">beschulz</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-16109569-5");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
+  </body>
+</html>
