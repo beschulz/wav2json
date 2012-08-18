@@ -34,7 +34,7 @@ Since the input file is opened multiple times, I'd recommend to write it to a te
 	wav2json tmp.wav --channels left right mid side min max -o song.json
 	rm tmp.wav
 
-Also note, that you can dramatically reduce the file size, by reducing the precission of the output. In my tests, even a precission of 1 looked good.
+Also note, that you can dramatically reduce the file size, by reducing the precision of the output. In my tests, even a precision of 1 looked good.
 
 # Installation
 
