@@ -88,12 +88,12 @@ Since the input file is opened multiple times, I'd recommend to write it to a te
 
 One thing, thats noteworthy is, that you can generate output for multiple cahannels:
 
-left is the left channel of the audio file.
-right is the right channel of the audio file
-mid is the mid channel of the audio file computed per sample as: mid = (left + right) / 2
-side is the side channel of the audio file computed per sample as: side = (left + right) / 2
-max is the maximum of the channels of the audio file computed per sample as: max = max(left, right)
-min is the minimum of the channels of the audio file computed per sample as: min = min(left, right)
+* left is the left channel of the audio file.
+* right is the right channel of the audio file
+* mid is the mid channel of the audio file computed per sample as: mid = (left + right) / 2
+* side is the side channel of the audio file computed per sample as: side = (left + right) / 2
+* max is the maximum of the channels of the audio file computed per sample as: max = max(left, right)
+* min is the minimum of the channels of the audio file computed per sample as: min = min(left, right)
 
 Obviously outputting the right, mid, side, min, max channels does only make sense on stereo input. When the input is mono,
 the applications falls back to outputing the left channel and prints a warning to stderr.
