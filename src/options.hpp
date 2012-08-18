@@ -22,12 +22,19 @@ struct Options
     	default_chanels.push_back(LEFT);
     	default_chanels.push_back(RIGHT);
 
+    	typedef std::numeric_limits< float > flt;
+
+    	std::stringstream float_digits;
+    	float_digits << flt::digits10;
+
     	po::options_description config("Configuration");
 		config.add_options()
     		("samples,s", po::value<size_t>(&samples)->default_value(800), 
           		"number of samples to generate")
     		("channels", po::value<Channels>(&channels)->default_value(default_chanels)->multitoken(),
           		"channels to compute: left, right, mid, side, min, max")
+    		("precision,p", po::value<int>(&precision)->default_value(flt::digits10),
+          		("precision of the floats, that are generated. [1.." + float_digits.str() + "], reduce for smaller sized files. Usually 2 should be sufficient!").c_str() )
     		("output,o", po::value<std::string>(&output_file_name)->default_value(""), 
           		"name of output file, defaults to <name of inputfile>.json")
     		("config-file,c", po::value<std::string>(&config_file_name)->default_value("wav2json.cfg"), 
@@ -39,6 +46,8 @@ struct Options
 		    ("db-max", po::value(&db_max)->default_value(0.0f),
     			"maximum value of the signal in dB, that will be visible in the waveform. "
     			"Usefull, if you now, that your signal peaks at a certain level.")
+		    ("no-header,n", po::value(&no_header)->zero_tokens()->default_value(false),
+    			"Do not include the version info banner in the output")
     	;
 
     	po::options_description hidden("Hidden options");
@@ -99,6 +108,13 @@ struct Options
 			parse_error = true;
 		}
 
+		//I am not sure, if this range check is correct.
+		if (precision < 0 || precision > flt::digits10)
+		{
+			std::cerr << "Error: precision is out of range." << std::endl;
+			parse_error = true;
+		}
+
 		if (output_file_name.empty())
 			output_file_name = input_file_name + ".png";
 
@@ -146,6 +162,9 @@ struct Options
 	std::string output_file_name;
 	std::string input_file_name;
 	std::string config_file_name;
+
+	bool no_header;
+	int precision;
 
 	bool use_db_scale;
 	float db_min;

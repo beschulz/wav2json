@@ -59,7 +59,7 @@ Since the input file is opened multiple times, I'd recommend to write it to a te
 
 #Usage
 
-	wav2json version 0.1
+	wav2json version 0.2
 	written by Benjamin Schulz (beschulz[the a with the circle]betabugs.de)
 
 	usage: wav2json [options] input_file_name
@@ -75,6 +75,10 @@ Since the input file is opened multiple times, I'd recommend to write it to a te
 	  -s [ --samples ] arg (=800)           number of samples to generate
 	  --channels arg (=left right )         channels to compute: left, right, mid, 
 	                                        side, min, max
+	  -p [ --precision ] arg (=6)           precision of the floats, that are 
+	                                        generated. [1..6], reduce for smaller 
+	                                        sized files. Usually 2 should be 
+	                                        sufficient!
 	  -o [ --output ] arg                   name of output file, defaults to <name 
 	                                        of inputfile>.json
 	  -c [ --config-file ] arg (=wav2json.cfg)
@@ -87,6 +91,9 @@ Since the input file is opened multiple times, I'd recommend to write it to a te
 	                                        will be visible in the waveform. 
 	                                        Usefull, if you now, that your signal 
 	                                        peaks at a certain level.
+	  -n [ --no-header ]                    Do not include the version info banner 
+	                                        in the output
+
 
 One thing, thats noteworthy is, that you can generate output for multiple cahannels:
 

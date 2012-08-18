@@ -25,8 +25,28 @@ int main(int argc, char* argv[])
   using std::cerr;
 
   std::ofstream ofs(options.output_file_name.c_str());
+
+  //it appears, that javascript is fine with scientific notation
+  //ofs << std::fixed; //explicitly use fixed notation
+  //ofs << std::scientific;
+  ofs.precision( options.precision );
   
   ofs << "{" << std::endl;
+
+  /*
+    -rw-r--r--   1 beschulz  staff    606 Aug 18 19:36 test1.json
+    -rw-r--r--   1 beschulz  staff  43431 Aug 18 19:36 test2.json
+    -rw-r--r--   1 beschulz  staff  39104 Aug 18 19:36 test3.json
+
+    -rw-r--r--   1 beschulz  staff    384 Aug 18 19:55 test1.json
+    -rw-r--r--   1 beschulz  staff  15291 Aug 18 19:55 test2.json
+    -rw-r--r--   1 beschulz  staff  19499 Aug 18 19:55 test3.json    
+  */
+
+  if (!options.no_header)
+  {
+    ofs << "  \"_generator\":\"wav2json version " << version::version << " on " << version::platform << " (http://goo.gl/af7wg)\"," << std::endl;
+  }
 
   for(size_t i = 0; i != options.channels.size(); ++i)
   {

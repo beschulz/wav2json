@@ -37,7 +37,7 @@ $(BINARY): $(SRC)/*.cpp $(SRC)/*.hpp $(SRC)/version.hpp
 	$(CC) -O3 -Wall -Werror $(SRC)/*.cpp $(INCLUDES) $(LD_PLATFORM_FLAGS) -o $(BINARY)
 
 ../examples/%.json : ../example_data/%.wav
-	$(BINARY) $+ --channels left right mid side min max -o $@
+	$(BINARY) $+ --precision 2 --channels left right mid side min max -o $@
 
 TEST_JSONS=$(patsubst ../example_data/%.wav,../examples/%.json,$(wildcard ../example_data/*.wav))
 
