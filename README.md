@@ -25,6 +25,8 @@ might produce output like
 		"right":[0,0.499969,0.865997,0.999969,0.865997,0.499969,0,0.5,0.866028,0,0.866028,0.5],
 	}
 
+Also take a look at some [example renderings](http://beschulz.github.com/wav2json/).
+
 # Performance
 Similar to wav2png (e.g. very good). But it might be a little slower, when generating output for multiple channels.
 Since the input file is opened multiple times, I'd recommend to write it to a temporary file first, so you can take advantage of the operating systems file cache:
