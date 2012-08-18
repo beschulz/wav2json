@@ -100,6 +100,8 @@ the applications falls back to outputing the left channel and prints a warning t
 
 When there are more than two channels present, the output might be a little non-sensical, depending on what information is stored in the first and second channel.
 
+Also note, that if there are less samples in the audio file, than defined by --samples, only as many samples as there are in the audio file will be written to the json file. The interpolation should be done by waveform.js
+
 # Donations
 If you find wav2png incredibly usefull nd use it a lot, feel free to make a small [donation via paypal](http://goo.gl/Ey2Bp).
 While it is highly appreciated, it is absolutely not necessary to us the software.
