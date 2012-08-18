@@ -122,9 +122,9 @@
     }
 
     $(function(){
-      load_example('test1');
-      load_example('test2');
       load_example('test3');
+      load_example('test2');
+      load_example('test1');
     });
   </script>
 
@@ -215,6 +215,8 @@ Configuration:
 the applications falls back to outputing the left channel and prints a warning to stderr.</p>
 
 <p>When there are more than two channels present, the output might be a little non-sensical, depending on what information is stored in the first and second channel.</p>
+
+<p>Also note, that if there are less samples in the audio file, than defined by --samples, only as many samples as there are in the audio file will be written to the json file. The interpolation should be done by waveform.js</p>
 
 <h1>Donations</h1>
 
