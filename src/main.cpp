@@ -55,7 +55,7 @@ int main(int argc, char* argv[])
   for(size_t i = 0; i != options.channels.size(); ++i)
   {
     // open sound file
-    SndfileHandle wav(options.input_file_name);
+    SndfileHandle wav(options.input_file_name.c_str());
 
     // handle error
     if ( wav.error() )
