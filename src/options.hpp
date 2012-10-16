@@ -5,6 +5,7 @@
 #include <string>
 #include "./version.hpp"
 #include <iostream>
+#include <fstream>
 
 struct Options
 {
@@ -182,6 +183,13 @@ inline std::istream& operator>>(std::istream& in, Options::Channel& channel)
     else if (token == "side") channel = Options::SIDE;
     else if (token == "min") channel = Options::MIN;
     else if (token == "max") channel = Options::MAX;
+    else
+    {
+    	channel = Options::MAX; // silence warning
+    	throw std::invalid_argument("invalid channel");
+    }
+
+    //unfortunately, validation_error appears not to be available in boost 1.33
     //else throw boost::program_options::validation_error("Invalid channel");
 
     return in;
