@@ -118,7 +118,7 @@ struct Options
 		}
 
 		if (output_file_name.empty())
-			output_file_name = input_file_name + ".png";
+			output_file_name = input_file_name + ".json";
 
 		if (samples == 0)
 		{
