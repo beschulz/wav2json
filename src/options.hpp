@@ -82,7 +82,7 @@ struct Options
 			std::ifstream config_file(config_file_name.c_str()); //backward compatibility with older boost versions
 			if (!config_file.good())
 			{
-				if ( config_file_name != "wav2png.cfg" )
+				if ( config_file_name != "wav2json.cfg" )
 				{
 					std::cerr << "Error: " << "failed to read config file '" << config_file_name << "'!" << std::endl;
 					parse_error = true;
