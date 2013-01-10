@@ -53,10 +53,21 @@ Also note, that you can dramatically reduce the file size, by reducing the preci
 * Get the Xcode command line tools
 	* Starting with Xcode 4.3, Apple does not install command line tools by default anymore, so after Xcode installation, go to Preferences > Downloads > Components > Command Line Tools and click Install. You can also directly [download Command Line Tools](https://developer.apple.com/downloads) for Xcode without getting Xcode.
 * [Install homebrew](https://github.com/mxcl/homebrew/wiki/installation)
-* install libsndfile: in the shell: brew install libsndfile
+* install libsndfile: in the shell: ```brew install libsndfile```
+* install boost: in the shell: ```brew install boost```
 
 ### Build
-* in the shell: cd build && make all
+* in the shell: ```cd build && make all```
+
+### Add wav2json
+Either
+
+	mv ../bin/Darwin/wav2json /usr/local/bin
+
+Or add this to your .bash_profile making sure to change the directory to where you cloned the repo
+
+	# wav2json
+	PATH=$PATH\:/Path/to/wav2json/src/wav2json/bin/Darwin ; export PATH
 
 #Usage
 
