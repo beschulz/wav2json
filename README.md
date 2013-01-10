@@ -62,7 +62,7 @@ Also note, that you can dramatically reduce the file size, by reducing the preci
 ### Add wav2json
 Either
 
-	mv ../bin/Darwin/wav2json /usr/local/lib
+	mv ../bin/Darwin/wav2json /usr/local/bin
 
 Or add this to your .bash_profile making sure to change the directory to where you cloned the repo
 
