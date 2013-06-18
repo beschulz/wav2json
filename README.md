@@ -101,7 +101,7 @@ Or add this to your .bash_profile making sure to change the directory to where y
 	                                        will be visible in the waveform
 	  --db-max arg (=0)                     maximum value of the signal in dB, that
 	                                        will be visible in the waveform. 
-	                                        Usefull, if you now, that your signal 
+	                                        Useful if you know that your signal 
 	                                        peaks at a certain level.
 	  -n [ --no-header ]                    Do not include the version info banner 
 	                                        in the output
