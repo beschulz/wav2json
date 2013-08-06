@@ -24,7 +24,16 @@ int main(int argc, char* argv[])
   using std::cout;
   using std::cerr;
 
-  std::ofstream ofs(options.output_file_name.c_str());
+  std::ofstream output;
+  std::ostream ofs(std::cout.rdbuf());
+
+  // If the output file name provided is "-", use stdout.  Otherwise open the filename provided.
+  if (strncmp(options.output_file_name.c_str(), "-", 1))
+  {
+    output.open(options.output_file_name.c_str());
+    ofs.rdbuf(output.rdbuf());
+  }
+
 
   //it appears, that javascript is fine with scientific notation
   //ofs << std::fixed; //explicitly use fixed notation
