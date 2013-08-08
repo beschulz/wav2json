@@ -2,14 +2,13 @@
 
 #include <iostream>
 #include <vector>
-#include <iterator>
 #include <fstream>
 
 #include "options.hpp"
 
 #include "wav2json.hpp"
 
-bool progress_callback(int percent)
+bool progress_callback(size_t percent)
 {
     std::cerr << "\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\bconverting: " << percent << "%";
     return true;
@@ -28,7 +27,7 @@ int main(int argc, char* argv[])
   std::ostream ofs(std::cout.rdbuf());
 
   // If the output file name provided is "-", use stdout.  Otherwise open the filename provided.
-  if (strncmp(options.output_file_name.c_str(), "-", 1))
+  if (options.output_file_name != "-")
   {
     output.open(options.output_file_name.c_str());
     ofs.rdbuf(output.rdbuf());

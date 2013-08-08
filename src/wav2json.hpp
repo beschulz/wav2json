@@ -2,9 +2,9 @@
 #include "options.hpp"
 
 #ifdef __OBJC__
-    typedef bool (^progress_callback_t)(int progress);
+    typedef bool (^progress_callback_t)(size_t progress);
 #else /* __OBJC__ */
-    typedef bool (*progress_callback_t)(int progress);
+    typedef bool (*progress_callback_t)(size_t progress);
 #endif /* __OBJC__ */
 
 void compute_waveform(

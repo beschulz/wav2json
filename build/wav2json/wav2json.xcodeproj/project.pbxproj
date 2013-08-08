@@ -1,0 +1,243 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6CE9F0D274555416F7BD3AF4 /* wav2json.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6CE9F436569616CC25F624A9 /* wav2json.cpp */; };
+		6CE9FD21AFCA691902D07DD6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6CE9F39531DE504E547224AD /* main.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6CE9F18B943059F9A521C69F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		6CE9F156651005FBB996019E /* wav2json */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = wav2json; sourceTree = BUILT_PRODUCTS_DIR; };
+		6CE9F39531DE504E547224AD /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../../src/main.cpp; sourceTree = "<group>"; };
+		6CE9F436569616CC25F624A9 /* wav2json.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = wav2json.cpp; path = ../../../src/wav2json.cpp; sourceTree = "<group>"; };
+		6CE9F5A912A8552742FB2D4E /* wav2json.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = wav2json.hpp; path = ../../../src/wav2json.hpp; sourceTree = "<group>"; };
+		6CE9FAE866C1F7D9A5A65D2C /* options.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = options.hpp; path = ../../../src/options.hpp; sourceTree = "<group>"; };
+		6CE9FBAB352728F084E54037 /* version.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = version.hpp; path = ../../../src/version.hpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6CE9F9829EE646ED7A487F09 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6CE9F92C6E29A82E3E540581 /* wav2json */ = {
+			isa = PBXGroup;
+			children = (
+				6CE9F5A912A8552742FB2D4E /* wav2json.hpp */,
+				6CE9F39531DE504E547224AD /* main.cpp */,
+				6CE9FBAB352728F084E54037 /* version.hpp */,
+				6CE9FAE866C1F7D9A5A65D2C /* options.hpp */,
+				6CE9F436569616CC25F624A9 /* wav2json.cpp */,
+			);
+			path = wav2json;
+			sourceTree = "<group>";
+		};
+		6CE9FA3657822207E03354E2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6CE9F156651005FBB996019E /* wav2json */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6CE9FCE697CACD18277489AB = {
+			isa = PBXGroup;
+			children = (
+				6CE9FA3657822207E03354E2 /* Products */,
+				6CE9F92C6E29A82E3E540581 /* wav2json */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6CE9F573B429E3AB872EAAA6 /* wav2json */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6CE9F9D1A7F0746D16FFBC06 /* Build configuration list for PBXNativeTarget "wav2json" */;
+			buildPhases = (
+				6CE9F65A9C7DE9464DF193F6 /* Sources */,
+				6CE9F9829EE646ED7A487F09 /* Frameworks */,
+				6CE9F18B943059F9A521C69F /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = wav2json;
+			productName = wav2json;
+			productReference = 6CE9F156651005FBB996019E /* wav2json */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6CE9F527A8235C16154B1C10 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "Benjamin Schulz";
+			};
+			buildConfigurationList = 6CE9FD3660D4BFCED2DF8CDA /* Build configuration list for PBXProject "wav2json" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 6CE9FCE697CACD18277489AB;
+			productRefGroup = 6CE9FA3657822207E03354E2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6CE9F573B429E3AB872EAAA6 /* wav2json */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6CE9F65A9C7DE9464DF193F6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6CE9FD21AFCA691902D07DD6 /* main.cpp in Sources */,
+				6CE9F0D274555416F7BD3AF4 /* wav2json.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		6CE9F4BE0BFBB9DDC5050075 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				OTHER_LDFLAGS = (
+					"-L/usr/local/lib",
+					"-lboost_program_options-mt",
+					"-lsndfile",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		6CE9F61E6B13214395AED827 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/local/include;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_LDFLAGS = "";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		6CE9FAE177C26D21DF76E347 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/local/include;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		6CE9FFED4AEBFEC9BEA8AB7A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				OTHER_LDFLAGS = (
+					"-L/usr/local/lib",
+					"-lboost_program_options-mt",
+					"-lsndfile",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6CE9F9D1A7F0746D16FFBC06 /* Build configuration list for PBXNativeTarget "wav2json" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6CE9FFED4AEBFEC9BEA8AB7A /* Release */,
+				6CE9F4BE0BFBB9DDC5050075 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6CE9FD3660D4BFCED2DF8CDA /* Build configuration list for PBXProject "wav2json" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6CE9F61E6B13214395AED827 /* Release */,
+				6CE9FAE177C26D21DF76E347 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6CE9F527A8235C16154B1C10 /* Project object */;
+}

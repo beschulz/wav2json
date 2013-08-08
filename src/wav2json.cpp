@@ -1,6 +1,7 @@
 #include "wav2json.hpp"
 
 #include <math.h>
+//#include <cmath>
 #include <iostream>
 #include <vector>
 #include <assert.h>
@@ -35,17 +36,17 @@ template <> struct sample_scale<float>
 */
 float float2db(float x)
 {
-  x = fabs(x);
+  x = fabsf(x);
 
   if (x > 0.0f)
-    return 20.0f * log10( x );
+    return 20.0f * log10f(x);
   else
     return -9999.9f;
 }
 
 float db2float(float x)
 {
-  return pow(10.0, x/20.f);
+  return powf(10.0f, x/20.f);
 }
 
 /*
@@ -97,7 +98,7 @@ void compute_waveform(
   using std::endl;
 
   // you can change it to float or short, short was much faster for me.
-  typedef short sample_type;
+  typedef float sample_type;
 
   samples = std::min(wav.frames(), (sf_count_t)samples);
 
