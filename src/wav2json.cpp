@@ -98,7 +98,11 @@ void compute_waveform(
   using std::endl;
 
   // you can change it to float or short, short was much faster for me.
+#ifdef USE_FLOAT
+  typedef float sample_type;
+#else
   typedef short sample_type;
+#endif
 
   samples = std::min(wav.frames(), (sf_count_t)samples);
 
