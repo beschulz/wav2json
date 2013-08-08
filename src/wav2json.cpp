@@ -98,7 +98,7 @@ void compute_waveform(
   using std::endl;
 
   // you can change it to float or short, short was much faster for me.
-  typedef float sample_type;
+  typedef short sample_type;
 
   samples = std::min(wav.frames(), (sf_count_t)samples);
 
@@ -123,6 +123,10 @@ void compute_waveform(
     channel = Options::LEFT;
   }
 
+  // https://github.com/beschulz/wav2json/pull/7
+  // http://www.mega-nerd.com/libsndfile/api.html#note2
+  const_cast<SndfileHandle&>(wav).command(SFC_SET_SCALE_FLOAT_INT_READ, 0, SF_TRUE);
+
   /*
     the processing works like this:
     for each vertical pixel in the image (x), read frames_per_pixel frames from
@@ -131,7 +135,7 @@ void compute_waveform(
   for (size_t x = 0; x < samples; ++x)
   {
     // read frames
-    sf_count_t n = const_cast<SndfileHandle&>(wav).readf(&block[0], frames_per_pixel) * wav.channels();
+    sf_count_t n = const_cast<SndfileHandle&>(wav).read(&block[0], frames_per_pixel) * wav.channels();
     assert(n <= (sf_count_t)block.size());
 
     // find min and max
