@@ -135,7 +135,7 @@ void compute_waveform(
   for (size_t x = 0; x < samples; ++x)
   {
     // read frames
-    sf_count_t n = const_cast<SndfileHandle&>(wav).read(&block[0], frames_per_pixel) * wav.channels();
+    sf_count_t n = const_cast<SndfileHandle&>(wav).readf(&block[0], frames_per_pixel) * wav.channels();
     assert(n <= (sf_count_t)block.size());
 
     // find min and max
