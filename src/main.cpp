@@ -65,6 +65,11 @@ int main(int argc, char* argv[])
     // open sound file
     SndfileHandle wav(options.input_file_name.c_str());
 
+	// output sound duration
+	if (i == 0) {
+		ofs << "  \"duration\":" << wav.frames()/wav.samplerate() << "," << std::endl;	  
+	}
+  
     // handle error
     if ( wav.error() )
     {
