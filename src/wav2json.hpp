@@ -7,7 +7,7 @@
     typedef bool (*progress_callback_t)(size_t progress);
 #endif /* __OBJC__ */
 
-void compute_waveform(
+float compute_waveform(
   const SndfileHandle& wav,
   std::ostream& output_stream,
   size_t samples,

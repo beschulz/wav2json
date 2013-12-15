@@ -65,12 +65,12 @@ int main(int argc, char* argv[])
     // open sound file
     SndfileHandle wav(options.input_file_name.c_str());
 
-	// output sound duration
-	if (i == 0) {
-		ofs << "  \"duration\":" << wav.frames()/wav.samplerate() << "," << std::endl;	  
-	}
+	// // output sound duration
+	// if (i == 0) {
+	// 	ofs << "  \"duration\":" << wav.frames()/(float)wav.samplerate() << "," << std::endl;	  
+	// }
   
-    // handle error
+    // Handle error
     if ( wav.error() )
     {
         cerr << "Error opening audio file '" << options.input_file_name << "'" << endl;
@@ -82,7 +82,7 @@ int main(int argc, char* argv[])
 
     ofs << "  \"" << channel << "\":";
 
-    compute_waveform(
+    float sampleDur = compute_waveform(
       wav,
       ofs,
       options.samples,
@@ -93,8 +93,14 @@ int main(int argc, char* argv[])
       progress_callback
     );
 
-    if (i != options.channels.size()-1) //only write comma, if this is not the last entry
-      ofs << "," << std::endl;
+    // if (i != options.channels.size()-1) //only write comma, if this is not the last entry
+    //   ofs << "," << std::endl;
+
+	ofs << "," << std::endl;
+	if (i == options.channels.size()-1) {
+		ofs << std::endl;
+		ofs << "  \"duration\":" << sampleDur;
+	}
   }
 
   ofs << std::endl << "}" << std::endl;
