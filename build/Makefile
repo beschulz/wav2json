@@ -22,6 +22,10 @@ INCLUDES=\
 	-I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/usr/X11/include/
 endif
 
+ifdef USE_FLOAT
+  LD_PLATFORM_FLAGS+=-DUSE_FLOAT
+endif
+
 all: $(BINARY)
 
 $(SRC)/version.hpp: Makefile version.txt
