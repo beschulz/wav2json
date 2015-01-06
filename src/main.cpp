@@ -60,29 +60,26 @@ int main(int argc, char* argv[])
     ofs << "  \"_generator\":\"wav2json version " << version::version << " on " << version::platform << " (http://goo.gl/af7wg)\"," << std::endl;
   }
 
+  // open sound file
+  SndfileHandle wav(options.input_file_name.c_str());
+
+  // Handle error
+  if ( wav.error() )
+  {
+      cerr << "Error opening audio file '" << options.input_file_name << "'" << endl;
+      cerr << "Error was: '" << wav.strError() << "'" << endl; 
+      return 2;
+  }
+
   for(size_t i = 0; i != options.channels.size(); ++i)
   {
-    // open sound file
-    SndfileHandle wav(options.input_file_name.c_str());
-
-	// // output sound duration
-	// if (i == 0) {
-	// 	ofs << "  \"duration\":" << wav.frames()/(float)wav.samplerate() << "," << std::endl;	  
-	// }
-  
-    // Handle error
-    if ( wav.error() )
-    {
-        cerr << "Error opening audio file '" << options.input_file_name << "'" << endl;
-        cerr << "Error was: '" << wav.strError() << "'" << endl; 
-        return 2;
-    }
+    wav.seek(0, SEEK_SET);
 
     Options::Channel channel = options.channels[i];
 
     ofs << "  \"" << channel << "\":";
 
-    float sampleDur = compute_waveform(
+    compute_waveform(
       wav,
       ofs,
       options.samples,
@@ -93,16 +90,14 @@ int main(int argc, char* argv[])
       progress_callback
     );
 
-    // if (i != options.channels.size()-1) //only write comma, if this is not the last entry
-    //   ofs << "," << std::endl;
-
-	ofs << "," << std::endl;
-	if (i == options.channels.size()-1) {
-		ofs << std::endl;
-		ofs << "  \"duration\":" << sampleDur;
-	}
+	  ofs << "," << std::endl;
   }
 
+  // increase precission for duration
+  ofs << std::fixed; //explicitly use fixed notation
+  ofs.precision( std::numeric_limits<float>::digits10 );
+
+  ofs << "  \"duration\":" << wav.frames() / float(wav.samplerate());
   ofs << std::endl << "}" << std::endl;
 
   cerr << endl;

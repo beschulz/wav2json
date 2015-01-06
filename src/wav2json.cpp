@@ -80,7 +80,7 @@ T compute_sample(const std::vector<T>& block, int i, int n_channels, Options::Ch
 /*
   compute the waveform of the supplied audio-file and store it into out_image.
 */
-float compute_waveform(
+void compute_waveform(
   const SndfileHandle& wav,
   std::ostream& output_stream,
   size_t samples,
@@ -135,12 +135,8 @@ float compute_waveform(
   for (size_t x = 0; x < samples; ++x)
   {
 	  // read frames
-	  //int pos = (int)(x*wav.frames()/samples);
-	  //const_cast<SndfileHandle&>(wav).seek(pos, SEEK_SET);
     sf_count_t n = const_cast<SndfileHandle&>(wav).readf(&block[0], frames_per_pixel) * wav.channels();
     assert(n <= (sf_count_t)block.size());
-	// std::cout << "frames: " << const_cast<SndfileHandle&>(wav).seek(0, SEEK_CUR) << std::endl;
-
 
     // find min and max
     sample_type max(0);
@@ -163,20 +159,13 @@ float compute_waveform(
     if ( x%(progress_divisor) == 0 )
     {
       if ( progress_callback && !progress_callback( 100*x/samples ) )
-          return 0;
+          return;
     }
   }
   
   // call the progress callback
   if ( progress_callback && !progress_callback( 100 ) )
-    return 0;
+    return;
 
   output_stream << "]";
-  std::cout << "frames: " << const_cast<SndfileHandle&>(wav).seek(0, SEEK_CUR) << std::endl;
-  std::cout << "frames2: " << frames_per_pixel*samples << std::endl;
-  std::cout << "sample duration: " << const_cast<SndfileHandle&>(wav).seek(0, SEEK_CUR)/wav.samplerate() << std::endl;
-  std::cout << "sample duration2: " << (frames_per_pixel*samples)/(float)wav.samplerate() << std::endl;
-  std::cout << "total frames " << wav.frames() << std::endl;
-  std::cout << "total duration: " <<  wav.frames()/(float)wav.samplerate()<< std::endl;
-  return (frames_per_pixel*samples)/(float)wav.samplerate();
 }
