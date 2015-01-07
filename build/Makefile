@@ -5,7 +5,7 @@ BINARY=../bin/$(UNAME)/wav2json
 SRC=../src
 
 ifeq ($(UNAME), Linux)
-LD_PLATFORM_FLAGS=-lboost_program_options
+LD_PLATFORM_FLAGS=-lboost_program_options -lsndfile
 CC=g++
 endif
 ifeq ($(UNAME), Darwin)
