@@ -38,15 +38,15 @@ Also note, that you can dramatically reduce the file size, by reducing the preci
 
 # Installation
 
-## On Linux (Ubuntu, Debian)
-
-###
+##
 	if you're using a Linux distributing, that supports apt-get or you're on OSX and have homebrew installed, you
 	might want to try:
 	```
 		cd build
 		make install_dependencies
 	```
+
+## On Linux (Ubuntu, Debian)
 
 ### install dependencies
     apt-get install make g++ libsndfile1-dev libboost-program-options-dev
