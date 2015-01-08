@@ -1,0 +1,7 @@
+language: cpp
+compiler:
+  - gcc
+  - clang
+script: cd build && make
+before_install:
+  - cd build && make install_dependencies

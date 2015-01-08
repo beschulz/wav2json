@@ -56,3 +56,14 @@ clean:
 	rm -f gmon.out
 	rm -f $(SRC)/version.hpp
 	rm -f ../examples/*.json
+
+install_dependencies_Linux:
+	sudo apt-get update -qq
+	sudo apt-get install -y libsndfile1-dev libboost-program-options-dev
+
+install_dependencies_Darwin:
+	brew update
+	brew install libsndfile
+	brew install boost
+
+install_dependencies: install_dependencies_$(UNAME)
