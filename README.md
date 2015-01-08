@@ -1,6 +1,8 @@
 wav2json
 ========
 
+[![Build Status](https://travis-ci.org/beschulz/wav2json.svg?branch=master)](https://travis-ci.org/beschulz/wav2json)
+
 Generate waveformjs.org compatible json data out of wav files.
 
 Author: Benjamin Schulz
