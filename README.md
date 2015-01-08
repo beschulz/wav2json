@@ -43,10 +43,10 @@ Also note, that you can dramatically reduce the file size, by reducing the preci
 ##
 	if you're using a Linux distributing, that supports apt-get or you're on OSX and have homebrew installed, you
 	might want to try:
-	```
-		cd build
-		make install_dependencies
-	```
+```bash
+cd build
+make install_dependencies
+```
 
 ## On Linux (Ubuntu, Debian)
 
@@ -54,8 +54,10 @@ Also note, that you can dramatically reduce the file size, by reducing the preci
     apt-get install make g++ libsndfile1-dev libboost-program-options-dev
 
 ### Build
-	cd build
-    make all
+```bash
+cd build
+make all
+```
 
 ## On Max OS
 
