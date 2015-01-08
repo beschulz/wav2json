@@ -2,6 +2,6 @@ language: cpp
 compiler:
   - gcc
   - clang
-script: cd build && make
+script: cd build && make && cd ..
 before_install:
-  - cd build && make install_dependencies
+  - cd build && make install_dependencies && cd ..
