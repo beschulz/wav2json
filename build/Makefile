@@ -63,7 +63,7 @@ install_dependencies_Linux:
 
 install_dependencies_Darwin:
 	brew update
-	brew install libsndfile
-	brew install boost
+	ls  /usr/local/lib/libsndfile.a || brew install libsndfile
+	ls /usr/local/lib/libboost_program_options-mt.a || brew install boost
 
 install_dependencies: install_dependencies_$(UNAME)
