@@ -42,7 +42,7 @@ $(SRC)/version.hpp: Makefile version.txt
 
 $(BINARY): $(SRC)/*.cpp $(SRC)/*.hpp $(SRC)/version.hpp
 	mkdir -p `dirname $(BINARY)`
-	$(CC) -O3 -Wall -Werror $(SRC)/*.cpp $(INCLUDES) $(LD_PLATFORM_FLAGS) -o $(BINARY)
+	$(CC) -O3 -Wall -Werror -std=c++11 $(SRC)/*.cpp $(INCLUDES) $(LD_PLATFORM_FLAGS) -o $(BINARY)
 
 ../examples/%.json : ../example_data/%.wav
 	$(BINARY) $+ --precision 2 --channels left right mid side min max -o $@
