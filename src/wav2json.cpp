@@ -84,15 +84,13 @@ void compute_waveform(
   const SndfileHandle& wav,
   std::ostream& output_stream,
   size_t samples,
-  Options::Channel channel,
+  Options::Channels channels,
   bool use_db_scale,
   float db_min,
   float db_max,
   progress_callback_t progress_callback
 )
 {
-  output_stream << "[";
-
   using std::size_t;
   using std::cerr;
   using std::endl;
@@ -113,19 +111,33 @@ void compute_waveform(
   // temp buffer for samples from audio file
   std::vector<sample_type> block(samples_per_pixel);
 
-  if (
-      (channel == Options::MID  ||
-       channel == Options::SIDE ||
-       channel == Options::RIGHT||
-       channel == Options::MIN  ||
-       channel == Options::MAX
-      ) &&
-      wav.channels() == 1
-  )
+  // filter out channels, that require more channels than the wav file has
+  channels.erase(
+      std::remove_if(channels.begin(), channels.end(), [&wav](Options::Channel channel){
+          if ((channel == Options::MID  ||
+               channel == Options::SIDE ||
+               channel == Options::RIGHT||
+               channel == Options::MIN  ||
+               channel == Options::MAX) &&
+               wav.channels() == 1
+          )
+          {
+            std::cerr << "Warning: your trying to generate output for channel '" << channel << "', but the input has only one channel. removing requested channel." << std::endl;
+            return true;
+          }
+          return false;
+      }),
+      channels.end()
+  );
+
+  if (channels.empty())
   {
-    std::cerr << "Warning: your trying to generate output for channel '" << channel << "', but the input has only one channel. falling back to the left channel." << std::endl;
-    channel = Options::LEFT;
+    std::cerr << "Warning: there are no channels left to process, aborting." << endl;
+    return;
   }
+
+  // create one vector of floats for each requested channel
+  std::vector<std::vector<float> > output_values( channels.size() );
 
   // https://github.com/beschulz/wav2json/pull/7
   // http://www.mega-nerd.com/libsndfile/api.html#note2
@@ -138,38 +150,55 @@ void compute_waveform(
   */
   for (size_t x = 0; x < samples; ++x)
   {
-	  // read frames
+    // read frames
     sf_count_t n = const_cast<SndfileHandle&>(wav).readf(&block[0], frames_per_pixel) * wav.channels();
     assert(n <= (sf_count_t)block.size());
 
-    // find min and max
-    sample_type max(0);
-    for (int i=0; i<n; i+=wav.channels()) // only left channel
+    // for each requested channel
+    for(size_t channel_idx = 0; channel_idx != channels.size(); ++channel_idx)
     {
-      sample_type sample = compute_sample(block, i, wav.channels(), channel);
-      sample_type abs_sample = std::abs(sample);
-      max = std::max( max, abs_sample );
-    }
+      // find min and max
+      sample_type max(0);
 
-    float y = use_db_scale?
-      map2range( float2db(max / (float)sample_scale<sample_type>::value ), db_min, db_max, 0, 1):
-      map2range( max, 0, sample_scale<sample_type>::value, 0, 1);
+      Options::Channel channel = channels[channel_idx];
+      for (int i=0; i<n; i+=wav.channels()) // seek to next frame
+      {
+        sample_type sample = compute_sample(block, i, wav.channels(), channel);
+        sample_type abs_sample = std::abs(sample);
+        max = std::max( max, abs_sample );
+      }
 
-    output_stream << y;
-    if (x != samples-1) //only write out comma, if this is not the last sample
-      output_stream << ",";
+      float y = use_db_scale?
+              map2range( float2db(max / (float)sample_scale<sample_type>::value ), db_min, db_max, 0, 1):
+              map2range( max, 0, sample_scale<sample_type>::value, 0, 1);
 
-    // print progress
-    if ( x%(progress_divisor) == 0 )
-    {
-      if ( progress_callback && !progress_callback( 100*x/samples ) )
+      // print progress
+      if ( x%(progress_divisor) == 0 )
+      {
+        if ( progress_callback && !progress_callback( 100*x/samples ) )
           return;
+      }
+
+      output_values[channel_idx].push_back(y);
     }
   }
-  
+
+  // finally output the collected values
+  for(size_t channel_idx = 0; channel_idx != channels.size(); ++channel_idx)
+  {
+    Options::Channel channel = channels[channel_idx];
+
+    output_stream << "  \"" << channel << "\": [";
+    for (size_t i = 0; i != output_values[channel_idx].size(); ++i)
+    {
+      output_stream << output_values[channel_idx][i];
+      if (i != output_values[channel_idx].size()-1)
+        output_stream << ","; // only output comma, if not the last ellement
+    }
+    output_stream << "]," << endl;
+  }
+
   // call the progress callback
   if ( progress_callback && !progress_callback( 100 ) )
     return;
-
-  output_stream << "]";
 }

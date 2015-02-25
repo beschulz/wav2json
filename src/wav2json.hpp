@@ -11,7 +11,7 @@ void compute_waveform(
   const SndfileHandle& wav,
   std::ostream& output_stream,
   size_t samples,
-  Options::Channel channel,
+  Options::Channels channels,
   bool use_db_scale,
   float db_min,
   float db_max,

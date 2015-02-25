@@ -71,27 +71,16 @@ int main(int argc, char* argv[])
       return 2;
   }
 
-  for(size_t i = 0; i != options.channels.size(); ++i)
-  {
-    wav.seek(0, SEEK_SET);
-
-    Options::Channel channel = options.channels[i];
-
-    ofs << "  \"" << channel << "\":";
-
-    compute_waveform(
-      wav,
-      ofs,
-      options.samples,
-      channel,
-      options.use_db_scale,
-      options.db_min,
-      options.db_max,
-      progress_callback
-    );
-
-	  ofs << "," << std::endl;
-  }
+  compute_waveform(
+    wav,
+    ofs,
+    options.samples,
+    options.channels,
+    options.use_db_scale,
+    options.db_min,
+    options.db_max,
+    progress_callback
+  );
 
   // increase precission for duration
   ofs << std::fixed; //explicitly use fixed notation
