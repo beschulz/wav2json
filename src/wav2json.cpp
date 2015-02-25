@@ -77,6 +77,38 @@ T compute_sample(const std::vector<T>& block, int i, int n_channels, Options::Ch
   return T(0);
 }
 
+
+/* functor to filter out invalid channels
+* lambdas would be nicer, but hey, it' 2015 :)
+* */
+struct filter_invalid_channels
+{
+  filter_invalid_channels(const SndfileHandle& wav, std::ostream& output_stream)
+  :wav(wav), output_stream(output_stream){}
+
+  bool operator () (Options::Channel channel)
+  {
+    if ((channel == Options::MID  ||
+         channel == Options::SIDE ||
+         channel == Options::RIGHT||
+         channel == Options::MIN  ||
+         channel == Options::MAX) &&
+         wav.channels() == 1
+    )
+    {
+      output_stream << "  \"" << channel << "\":[]," << std::endl; // output empty array, so that existing client-code does not break
+      std::cerr << "Warning: your trying to generate output for channel '" << channel << "', but the input has only one channel. removing requested channel." << std::endl;
+      return true;
+    }
+    return false;
+  }
+
+  private:
+    const SndfileHandle& wav;
+    std::ostream& output_stream;
+};
+
+
 /*
   compute the waveform of the supplied audio-file and store it into out_image.
 */
@@ -112,22 +144,9 @@ void compute_waveform(
   std::vector<sample_type> block(samples_per_pixel);
 
   // filter out channels, that require more channels than the wav file has
+  filter_invalid_channels filter(wav, output_stream);
   channels.erase(
-      std::remove_if(channels.begin(), channels.end(), [&wav, &output_stream](Options::Channel channel){
-          if ((channel == Options::MID  ||
-               channel == Options::SIDE ||
-               channel == Options::RIGHT||
-               channel == Options::MIN  ||
-               channel == Options::MAX) &&
-               wav.channels() == 1
-          )
-          {
-            output_stream << "  \"" << channel << "\":[]," << endl; // output empty array, so that existing client-code does not break
-            std::cerr << "Warning: your trying to generate output for channel '" << channel << "', but the input has only one channel. removing requested channel." << std::endl;
-            return true;
-          }
-          return false;
-      }),
+      std::remove_if(channels.begin(), channels.end(), filter),
       channels.end()
   );
 
