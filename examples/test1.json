@@ -1,5 +1,10 @@
 {
   "_generator":"wav2json version 0.4 on Darwin (http://goo.gl/af7wg)",
+  "right":[],
+  "mid":[],
+  "side":[],
+  "min":[],
+  "max":[],
   "left": [0,0.5,0.87,1,0.87,0.5,0,0.5,0.87,0,0.87,0.5],
   "duration":0.000250
 }
