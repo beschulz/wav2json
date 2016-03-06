@@ -59,6 +59,26 @@ cd build
 make all
 ```
 
+## On CentOS
+
+```bash
+# install dependencies
+sudo yum install boost-devel
+sudo yum install libsndfile-devel
+
+# clone repository
+cd ~/
+mkdir wave2json && cd wave2json/
+git clone https://github.com/beschulz/wav2json.git
+
+# build
+cd wav2json/build/
+make all
+
+# install
+mv ../bin/Linux/wav2json /usr/bin/
+```
+
 ## On Max OS
 
 ### install dependencies
