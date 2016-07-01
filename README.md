@@ -9,7 +9,7 @@ Author: Benjamin Schulz
 
 email: beschulz[the a with the circle]betabugs.de  
 
-License: GPL
+License: GPL-2
 
 Note: the file examples/waveform.js is from http://waveformjs.org/
 
