@@ -15,7 +15,7 @@ Note: the file examples/waveform.js is from http://waveformjs.org/
 
 This application is based on [wav2png](https://github.com/beschulz/wav2png/) but does generate json data instead of pngs.
 
-#Examples
+# Examples
 
 	wav2json song.wav --channels left right -o song.json
 
@@ -101,7 +101,7 @@ Or add this to your .bash_profile making sure to change the directory to where y
 	# wav2json
 	PATH=$PATH\:/Path/to/wav2json/src/wav2json/bin/Darwin ; export PATH
 
-#Usage
+# Usage
 
 	wav2json version 0.2
 	written by Benjamin Schulz (beschulz[the a with the circle]betabugs.de)
