@@ -134,7 +134,7 @@ void compute_waveform(
   typedef short sample_type;
 #endif
 
-  samples = std::min(wav.frames(), (sf_count_t)samples);
+  samples = (size_t) std::min(wav.frames(), (sf_count_t) samples);
 
   int frames_per_pixel  = std::max<int>(1, static_cast<const int &>(wav.frames() / (samples == 0 ? 1 : samples)));
   int samples_per_pixel = wav.channels() * frames_per_pixel;
