@@ -97,7 +97,7 @@ struct filter_invalid_channels
     )
     {
       output_stream << "  \"" << channel << "\":[]," << std::endl; // output empty array, so that existing client-code does not break
-      std::cerr << "Warning: your trying to generate output for channel '" << channel << "', but the input has only one channel. removing requested channel." << std::endl;
+      std::cerr << "Warning: you're trying to generate output for channel '" << channel << "', but the input has only one channel. removing requested channel." << std::endl;
       return true;
     }
     return false;
