@@ -136,7 +136,7 @@ void compute_waveform(
 
   samples = std::min(wav.frames(), (sf_count_t)samples);
 
-  int frames_per_pixel  = std::max<int>(1, wav.frames() / samples);
+  int frames_per_pixel  = std::max<int>(1, static_cast<const int &>(wav.frames() / (samples == 0 ? 1 : samples)));
   int samples_per_pixel = wav.channels() * frames_per_pixel;
   std::size_t progress_divisor = std::max<std::size_t>(1, samples/100);
 
